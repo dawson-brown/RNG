@@ -1,13 +1,13 @@
 #include <argp.h>
 
-const char *argp_program_version = "argex 1.0";
+const char *argp_program_version;
 
-const char *argp_program_bug_address = "<bug-gnu-utils@gnu.org>";
+const char *argp_program_bug_address;
 
 /*
    Description of non-option arguments
 */
-static char args_doc[] = "n -- number of bytes\nd -- the display base";
+static char args_doc[] = "";
 
 /*
   Program documentation.
@@ -18,10 +18,18 @@ static char doc[] = "Random number generator using /dev/urandom";
    the argp structure--for use in main.
 */
 
-static struct argp_option options[];
+extern struct argp_option options[];
 
-static error_t parse_opt (int key, char *arg, struct argp_state *state);
+enum parser_opts;
+
+error_t parse_opt (int key, char *arg, struct argp_state *state);
 
 static struct argp argp = {options, parse_opt, args_doc, doc};
 
 struct arguments arguments;
+
+struct arguments
+{                   
+  char *bytes;            /* -n flag the number of random bytes */
+  int base;            /* -d flag the number base to diplay */       
+};
