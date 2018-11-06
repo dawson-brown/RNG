@@ -25,14 +25,14 @@ error_t parse_opt (int key, char *arg, struct argp_state *state)
   struct arguments *arguments = state->input;
     switch (key)
         {
-        case 'n':
+        case bytes:
             if (arguments->bytes == NULL)
                 arguments->bytes = arg;
             else
                 argp_usage (state);
 
             break;
-        case 'd':
+        case base:
             arguments->base = 1;
             break;
         case ARGP_KEY_END:
